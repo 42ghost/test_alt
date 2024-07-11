@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <variant>
 #include <utility>
 #include <fstream>
 #include <rapidjson/document.h>
@@ -39,5 +40,9 @@ public:
     std::vector<package_json> except(JSONHandler);
     std::vector<package_json> newer(JSONHandler);
 };
+
+int rpmcmp(package_json p1, package_json p2);
+int verrelcmp(std::vector<std::variant<int, std::string>> ,std::vector<std::variant<int, std::string>>);
+std::vector<std::variant<int, std::string>> split(std::string);
 
 #endif
