@@ -10,7 +10,7 @@ CURLRequest_o=CURLRequest.o
 Comparator_o=Comparator.o
 main_o=main.o
 
-all: $(LIB_NAME) main
+all: $(LIB_NAME) main install
 
 $(JSONHandler_o): JSONHandler.cpp JSONHandler.h
 	$(CXX) $(CXXFLAGS) $< -o $@
