@@ -17,12 +17,26 @@ The program receives 2 branch names as input, receives a list of their packages 
 
 ## Installation
 ```bash
-sudo apt-get install gcc make
-sudo apt-get install curl
-sudo apt-get install rapidjson-dev
+su -
+apt-get update
+apt-get install git
+apt-get install gcc-c++
+apt-get install rapidjson
+apt-get install curl-devel
+```
 
+```bash
+git clone https://github.com/42ghost/test_alt.git
+cd test_alt
 make
-sudo make install
+```
+
+installing a shared library
+```bash
+su
+make install
+su -
+ldconfig
 ```
 
 ## Usage
