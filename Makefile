@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -g -c -fPIC
+CXXFLAGS=-std=c++17 -Wall -g -c -fPIC
 LDFLAGS=-shared -Wl,-soname,libmylib.so
 CURL_FLAGS=-lcurl
 
@@ -10,7 +10,7 @@ CURLRequest_o=CURLRequest.o
 Comparator_o=Comparator.o
 main_o=main.o
 
-all: $(LIB_NAME) main install
+all: $(LIB_NAME) main
 
 $(JSONHandler_o): JSONHandler.cpp JSONHandler.h
 	$(CXX) $(CXXFLAGS) $< -o $@
