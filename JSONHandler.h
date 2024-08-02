@@ -42,7 +42,7 @@ public:
 };
 
 int rpmcmp(package_json p1, package_json p2);
-int verrelcmp(std::vector<std::variant<int, std::string>> ,std::vector<std::variant<int, std::string>>);
-std::vector<std::variant<int, std::string>> split(std::string);
+int verrelcmp(std::vector<std::variant<unsigned long long, std::string>> ,std::vector<std::variant<unsigned long long, std::string>>);
+std::vector<std::variant<unsigned long long, std::string>> split(std::string);
 
 #endif

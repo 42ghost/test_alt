@@ -80,7 +80,7 @@ vector<package_json> JSONHandler::newer(JSONHandler branch){
 }
 
 int rpmcmp(package_json p1, package_json p2) {
-    std::vector<std::variant<int, std::string>> ver1, ver2, rel1, rel2;
+    std::vector<std::variant<unsigned long long, std::string>> ver1, ver2, rel1, rel2;
     ver1 = split(p1.version);
     ver2 = split(p2.version);
     int res = verrelcmp(ver1, ver2);
@@ -95,9 +95,9 @@ int rpmcmp(package_json p1, package_json p2) {
     return res;
 }
 
-int verrelcmp(std::vector<std::variant<int, std::string>> arg1,std::vector<std::variant<int, std::string>> arg2){
-    for (int i = 0; i < std::min(arg1.size(), arg2.size()); ++i){
-        if (std::holds_alternative<int>(arg1[i]) && std::holds_alternative<int>(arg2[i])){
+int verrelcmp(std::vector<std::variant<unsigned long long, std::string>> arg1,std::vector<std::variant<unsigned long long, std::string>> arg2){
+    for (unsigned long i = 0; i < std::min(arg1.size(), arg2.size()); ++i){
+        if (std::holds_alternative<unsigned long long>(arg1[i]) && std::holds_alternative<unsigned  long long>(arg2[i])){
             if (arg1[i] > arg2[i]){
                 return 1;
             } else if (arg1[i] < arg2[i]) {
@@ -110,9 +110,9 @@ int verrelcmp(std::vector<std::variant<int, std::string>> arg1,std::vector<std::
                 return -1;
             }
         } else {
-            if (std::holds_alternative<int>(arg1[i])) {
+            if (std::holds_alternative<unsigned long long>(arg1[i])) {
                 return 1;
-            } else if (std::holds_alternative<int>(arg2[i])){
+            } else if (std::holds_alternative<unsigned long long>(arg2[i])){
                 return -1;
             }
         }
@@ -126,8 +126,8 @@ int verrelcmp(std::vector<std::variant<int, std::string>> arg1,std::vector<std::
     return 0;
 }
 
-std::vector<std::variant<int, std::string>> split(std::string input){
-    std::vector<std::variant<int, std::string>> tokens = {};
+std::vector<std::variant<unsigned long long, std::string>> split(std::string input){
+    std::vector<std::variant<unsigned long long, std::string>> tokens = {};
     std::string cur = "";
     for (char c : input){
         if (isdigit(c)) {
@@ -138,14 +138,14 @@ std::vector<std::variant<int, std::string>> split(std::string input){
             cur += c;
         } else if (isalpha(c)) {
             if (!cur.empty() && isdigit(cur.back())) {
-                tokens.push_back(std::stoi(cur));
+                tokens.push_back(std::stoull(cur));
                 cur.clear();
             }
             cur += c;
         } else {
             if (!cur.empty()) {
                 if (isdigit(cur.back())) {
-                    tokens.push_back(std::stoi(cur));
+                    tokens.push_back(std::stoull(cur));
                 } else {
                     tokens.push_back(cur);
                 }
@@ -155,7 +155,7 @@ std::vector<std::variant<int, std::string>> split(std::string input){
     }
     if (!cur.empty()) {
         if (isdigit(cur.back())) {
-            tokens.push_back(std::stoi(cur));
+            tokens.push_back(std::stoull(cur));
         } else {
             tokens.push_back(cur);
         }

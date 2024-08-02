@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -Wall -g -c -fPIC
+CXXFLAGS=-std=c++17 -Wall -c -fPIC
 LDFLAGS=-shared -Wl,-soname,libmylib.so
 CURL_FLAGS=-lcurl
 
