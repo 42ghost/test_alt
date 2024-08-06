@@ -44,7 +44,7 @@ JSONHandler::JSONHandler(std::string name, std::string data) {
 JSONHandler::~JSONHandler() {
 }
 
-std::string JSONHandler::getBranach(){
+std::string JSONHandler::getBranch(){
     return branch;
 }
 

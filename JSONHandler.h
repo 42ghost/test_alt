@@ -34,7 +34,7 @@ public:
     JSONHandler(std::string name, std::string data);
     ~JSONHandler();
 
-    std::string getBranach();
+    std::string getBranch();
     package_json getPackage(std::string arch, std::string name);
 
     std::vector<package_json> except(JSONHandler);

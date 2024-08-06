@@ -77,7 +77,7 @@ void Comparator::save() {
     rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
     document.Accept(writer);
 
-    std::ofstream ofs(branch1.getBranach() + "_" + branch2.getBranach() + ".json");
+    std::ofstream ofs(branch1.getBranch() + "_" + branch2.getBranch() + ".json");
     ofs << buffer.GetString();
     ofs.close();
 }
